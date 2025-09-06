@@ -1,4 +1,4 @@
-// App constants - Updated for production deployment
+// App constants - Fixed syntax error for production
 export const APP_CONFIG = {
   API_BASE_URL:
     import.meta.env.VITE_API_BASE_URL || "https://pickflick.onrender.com/api",
