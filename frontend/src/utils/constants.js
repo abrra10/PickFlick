@@ -1,7 +1,7 @@
 // App constants
 export const APP_CONFIG = {
   API_BASE_URL:
-    import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api",
+    import.meta.env.VITE_API_BASE_URL || "https://pickflick.onrender.com/api",
   SESSION_CODE_LENGTH: 6,
   MAX_MOVIES_PER_SESSION: 20, // Reasonable limit
   POLLING_INTERVAL: 3000, // 3 seconds for real-time updates
