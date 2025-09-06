@@ -20,6 +20,14 @@ A collaborative movie selection app where roommates create lists of 5 movies eac
 - **Express Validator** for input validation
 - **CORS** enabled for frontend integration
 
+### Frontend
+
+- **React 18** with hooks and context
+- **Vite** for fast development and building
+- **Tailwind CSS** for modern styling
+- **React Router** for navigation
+- **Axios** for API communication
+
 ## 📁 Project Structure
 
 ```
@@ -43,6 +51,21 @@ PickFlick/
 │   │   └── database.js            # MongoDB connection
 │   ├── server.js              # Main application entry point
 │   └── package.json
+├── frontend/                  # React.js Client Application
+│   ├── public/                # Static assets
+│   ├── src/
+│   │   ├── components/        # Reusable UI components
+│   │   │   ├── common/        # Shared components
+│   │   │   ├── session/       # Session-specific components
+│   │   │   ├── movies/        # Movie-related components
+│   │   │   └── shuffle/       # Selection components
+│   │   ├── pages/             # Main page components
+│   │   ├── services/          # API integration
+│   │   ├── context/           # React context providers
+│   │   ├── utils/             # Helper functions
+│   │   └── styles/            # CSS files
+│   ├── package.json
+│   └── vite.config.js
 └── README.md
 ```
 
@@ -70,7 +93,14 @@ PickFlick/
    npm install
    ```
 
-3. **Set up environment variables**
+3. **Install frontend dependencies**
+
+   ```bash
+   cd ../frontend
+   npm install
+   ```
+
+4. **Set up environment variables**
    Create a `.env` file in the backend directory:
 
    ```env
@@ -89,15 +119,23 @@ PickFlick/
    SESSION_CODE_LENGTH=6
    ```
 
-4. **Start MongoDB**
+5. **Start MongoDB**
    Make sure MongoDB is running on your system
 
-5. **Start the backend server**
+6. **Start the backend server**
+
    ```bash
+   cd backend
    npm run dev
    ```
 
-The API will be available at `http://localhost:5000`
+7. **Start the frontend development server**
+   ```bash
+   cd frontend
+   npm run dev
+   ```
+
+The API will be available at `http://localhost:5000` and the frontend at `http://localhost:5173`
 
 ## 📚 API Endpoints
 

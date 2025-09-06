@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const movieSchema = new mongoose.Schema({
   tmdbId: {
-    type: Number,
+    type: String, // Changed to String to support manual entries like "manual_1234567890"
     required: true,
   },
   title: {
@@ -15,19 +15,26 @@ const movieSchema = new mongoose.Schema({
   },
   posterPath: {
     type: String,
-    required: true,
+    required: false, // Made optional for manual entries
+    default: null,
   },
   releaseDate: {
     type: String,
-    required: true,
+    required: false, // Made optional for manual entries
+    default: null,
   },
   voteAverage: {
     type: Number,
-    required: true,
+    required: false, // Made optional for manual entries
+    default: 0,
   },
   addedBy: {
     type: String,
     required: true,
+  },
+  isManual: {
+    type: Boolean,
+    default: false,
   },
 });
 

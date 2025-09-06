@@ -124,6 +124,62 @@ const addMovieToSession = async (req, res) => {
   }
 };
 
+const removeMovieFromSession = async (req, res) => {
+  try {
+    const { sessionCode, movieId } = req.params;
+
+    const session = await Session.findOne({
+      sessionCode: sessionCode.toUpperCase(),
+    });
+
+    if (!session) {
+      return res.status(404).json({
+        success: false,
+        message: "Session not found",
+      });
+    }
+
+    if (!session.isActive) {
+      return res.status(400).json({
+        success: false,
+        message: "Cannot remove movies from an inactive session",
+      });
+    }
+
+    // Find the movie to remove
+    const movieIndex = session.movies.findIndex(
+      (movie) => movie.tmdbId === movieId
+    );
+
+    if (movieIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        message: "Movie not found in session",
+      });
+    }
+
+    // Remove the movie
+    const removedMovie = session.movies.splice(movieIndex, 1)[0];
+    await session.save();
+
+    res.json({
+      success: true,
+      message: "Movie removed from session successfully",
+      data: {
+        removedMovie,
+        session,
+      },
+    });
+  } catch (error) {
+    console.error("Remove movie error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to remove movie from session",
+      error: error.message,
+    });
+  }
+};
+
 const selectMovie = async (req, res) => {
   try {
     const { sessionCode } = req.params;
@@ -202,6 +258,7 @@ module.exports = {
   createSession,
   getSession,
   addMovieToSession,
+  removeMovieFromSession,
   selectMovie,
   deleteSession,
 };

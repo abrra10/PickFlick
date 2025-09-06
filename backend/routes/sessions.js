@@ -4,6 +4,7 @@ const {
   createSession,
   getSession,
   addMovieToSession,
+  removeMovieFromSession,
   selectMovie,
   deleteSession,
 } = require("../controllers/sessionController");
@@ -24,6 +25,13 @@ router.post(
   validateSessionCode,
   validateMovieData,
   addMovieToSession
+);
+
+// Remove movie from session
+router.delete(
+  "/:sessionCode/movies/:movieId",
+  validateSessionCode,
+  removeMovieFromSession
 );
 
 // Select random movie from session
